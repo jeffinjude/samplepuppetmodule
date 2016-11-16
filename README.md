@@ -36,12 +36,12 @@ This puppet module install java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16 on ubu
 Install puppetlabs/mysql module. Run command 'puppet module install puppetlabs-mysql --version 2.2.2' to install it.
 
 ### Beginning with samplepuppetmodule
-Steps:
-Puppet Master:
-1) Install puppetmaster on the master node.
-2) Install puppetlabs/mysql module.
-3) Place this module directory in path /etc/puppet/modules
-4) In site.pp file (/etc/puppet/manifests/) specify the nodes to which the module should be applied.
+#### Steps:
+##### Puppet Master:
+* Install puppetmaster on the master node.
+* Install puppetlabs/mysql module.
+* Place this module directory in path /etc/puppet/modules
+* In site.pp file (/etc/puppet/manifests/) specify the nodes to which the module should be applied.
    Eg :
       node 'ip-172-31-12-157.us-west-1.compute.internal' {
         include samplepuppetmodule
@@ -52,18 +52,19 @@ Puppet Master:
    Add the node domain names to hosts file (/etc/hosts):
    54.67.124.62 ip-172-31-12-157.us-west-1.compute.internal
    54.67.126.56 ip-172-31-7-57.us-west-1.compute.internal
-5) Configure the puppet file server (/etc/puppet/fileserver.conf) to point to directory /etc/puppet/ .
-Puppet Agents:
-6) Install puppet on agents
-7) Add the puppet server domain name to hosts file
-8) In puppet conf file (/etc/puppet/puppet.conf) add the domain name of puppetmaster as server:
+* Configure the puppet file server (/etc/puppet/fileserver.conf) to point to directory /etc/puppet/
+
+##### Puppet Agents:
+* Install puppet on agents
+* Add the puppet server domain name to hosts file
+* In puppet conf file (/etc/puppet/puppet.conf) add the domain name of puppetmaster as server:
    server=ip-172-31-5-63.us-west-1.compute.internal
-9) Ensure that ports 8080, 3306, 8140 ports are open on the agents.
-10) Run command 'puppet agent --enable' as sudo
-11) Run command 'puppet agent --no-daemonize --onetime --verbose' as sudo to do an initial puppet run.
-12) After inital puppet run go to master and run command 'puppet cert list' to list the agent certificate.
-13) Run command 'puppet cert sign <certificate_name>' on master to sign the certificate.
-140 Now again run 'puppet agent --no-daemonize --onetime --verbose' as sudo on puppet agent.
+* Ensure that ports 8080, 3306, 8140 ports are open on the agents.
+* Run command 'puppet agent --enable' as sudo
+* Run command 'puppet agent --no-daemonize --onetime --verbose' as sudo to do an initial puppet run.
+* After inital puppet run go to master and run command 'puppet cert list' to list the agent certificate.
+* Run command 'puppet cert sign <certificate_name>' on master to sign the certificate.
+* Now again run 'puppet agent --no-daemonize --onetime --verbose' as sudo on puppet agent.
 
 ## Usage
 
