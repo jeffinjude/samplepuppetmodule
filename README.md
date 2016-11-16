@@ -14,20 +14,13 @@
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
-
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This puppet module install java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16 on ubuntu 16.04 nodes and deploys a spring web application on 8080 port. Uses puppet version 3.8.5.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+* Install java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16
+* Configures mysql db for the spring application
+* Deploys the spring web application on port 8080
 
 ## Setup
 
@@ -38,18 +31,39 @@ management, etc.) this is the time to mention it.
 * This is a great place to stick any warnings.
 * Can be in list or paragraph form.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements **Required**
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+Install puppetlabs/mysql module. Run command 'puppet module install puppetlabs-mysql --version 2.2.2' to install it.
 
 ### Beginning with samplepuppetmodule
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+Steps:
+Puppet Master:
+1) Install puppetmaster on the master node.
+2) Install puppetlabs/mysql module.
+3) Place this module directory in path /etc/puppet/modules
+4) In site.pp file (/etc/puppet/manifests/) specify the nodes to which the module should be applied.
+   Eg :
+      node 'ip-172-31-12-157.us-west-1.compute.internal' {
+        include samplepuppetmodule
+      }
+      node 'ip-172-31-7-57.us-west-1.compute.internal' {
+        include samplepuppetmodule
+      }
+   Add the node domain names to hosts file (/etc/hosts):
+   54.67.124.62 ip-172-31-12-157.us-west-1.compute.internal
+   54.67.126.56 ip-172-31-7-57.us-west-1.compute.internal
+5) Configure the puppet file server (/etc/puppet/fileserver.conf) to point to directory /etc/puppet/ .
+Puppet Agents:
+6) Install puppet on agents
+7) Add the puppet server domain name to hosts file
+8) In puppet conf file (/etc/puppet/puppet.conf) add the domain name of puppetmaster as server:
+   server=ip-172-31-5-63.us-west-1.compute.internal
+9) Ensure that ports 8080, 3306, 8140 ports are open on the agents.
+10) Run command 'puppet agent --enable' as sudo
+11) Run command 'puppet agent --no-daemonize --onetime --verbose' as sudo to do an initial puppet run.
+12) After inital puppet run go to master and run command 'puppet cert list' to list the agent certificate.
+13) Run command 'puppet cert sign <certificate_name>' on master to sign the certificate.
+140 Now again run 'puppet agent --no-daemonize --onetime --verbose' as sudo on puppet agent.
 
 ## Usage
 
