@@ -14,7 +14,7 @@
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
-This puppet module install java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16 on ubuntu 16.04 nodes and deploys a spring web application on 8080 port. Uses puppet version 3.8.5.
+This puppet module installs java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16 on ubuntu 16.04 nodes and deploys a spring web application on 8080 port. Uses puppet version 3.8.5.
 
 ## Module Description
 
