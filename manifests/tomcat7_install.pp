@@ -13,6 +13,9 @@ class samplepuppetmodule::tomcat7_install{
 
   if $::ipaddress == '172.31.7.57'
   {
+  package { 'authbind' :
+  ensure  => installed
+  }
   file { '/var/lib/tomcat7/conf/server.xml' :
     owner   => root,
     group   => root,
