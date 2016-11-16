@@ -42,22 +42,22 @@ Install puppetlabs/mysql module. Run command 'puppet module install puppetlabs-m
 * Install puppetlabs/mysql module.
 * Place this module directory in path /etc/puppet/modules
 * In site.pp file (/etc/puppet/manifests/) specify the nodes to which the module should be applied.
-   Eg :
-      node 'ip-172-31-12-157.us-west-1.compute.internal' {
-        include samplepuppetmodule
-      }
-      node 'ip-172-31-7-57.us-west-1.compute.internal' {
-        include samplepuppetmodule
-      }
-   Add the node domain names to hosts file (/etc/hosts):
-   54.67.124.62 ip-172-31-12-157.us-west-1.compute.internal
-   54.67.126.56 ip-172-31-7-57.us-west-1.compute.internal
+	<br>Eg : <br>
+	node 'ip-172-31-12-157.us-west-1.compute.internal' {<br>
+	include samplepuppetmodule<br>
+	}<br>
+	node 'ip-172-31-7-57.us-west-1.compute.internal' {<br>
+	include samplepuppetmodule<br>
+	}<br>
+   Add the node domain names to hosts file (/etc/hosts):<br>
+   54.67.124.62 ip-172-31-12-157.us-west-1.compute.internal<br>
+   54.67.126.56 ip-172-31-7-57.us-west-1.compute.internal<br>
 * Configure the puppet file server (/etc/puppet/fileserver.conf) to point to directory /etc/puppet/
 
 ##### Puppet Agents:
 * Install puppet on agents
 * Add the puppet server domain name to hosts file
-* In puppet conf file (/etc/puppet/puppet.conf) add the domain name of puppetmaster as server:
+* In puppet conf file (/etc/puppet/puppet.conf) add the domain name of puppetmaster as server:<br>
    server=ip-172-31-5-63.us-west-1.compute.internal
 * Ensure that ports 8080, 3306, 8140 ports are open on the agents.
 * Run command 'puppet agent --enable' as sudo
