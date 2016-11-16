@@ -33,7 +33,7 @@ This puppet module installs java 8, tomcat7,Mysql Ver 14.14 Distrib 5.7.16 on ub
 
 ### Setup Requirements **Required**
 
-Install puppetlabs/mysql module. Run command 'puppet module install puppetlabs-mysql --version 2.2.2' to install it.
+Install puppetlabs/mysql module. Run command 'puppet module install puppetlabs-mysql --version 3.10.0' to install it.
 
 ### Beginning with samplepuppetmodule
 #### Steps:
