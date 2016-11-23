@@ -24,5 +24,6 @@ mysql::db { 'angularjs-spa':
     host     => '127.0.0.1',
     grant    => ['SELECT', 'UPDATE','CREATE','DELETE'],
     sql      => '/etc/mysql/sql/DbSql.sql',
+    notify => Service['tomcat7'],
 }
 }
