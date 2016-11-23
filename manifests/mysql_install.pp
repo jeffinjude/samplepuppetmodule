@@ -18,7 +18,7 @@ file { '/etc/mysql/sql/' :
   ensure => directory,
 }
 
-mysql::db { 'springdemo':
+mysql::db { 'angularjs-spa':
     user     => 'root',
     password => 'root',
     host     => '127.0.0.1',
