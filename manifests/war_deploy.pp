@@ -5,8 +5,7 @@ class samplepuppetmodule::war_deploy {
     group   => root,
     mode    => '0644',
     source  => 'puppet:///modules/samplepuppetmodule/AngularJsSPA.war',
-    require => Class['tomcat7_install'],
-    notify => Service['tomcat7']
+    require => Class['tomcat7_install']
   }
 
   file { '/var/lib/tomcat7/webapps' :
